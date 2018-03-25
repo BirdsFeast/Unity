@@ -23,7 +23,10 @@ public class CreepAMovement : MonoBehaviour {
 
 	void GetNextWaypoint() {
 		waypointsIndex++;
-		if (waypointsIndex >= WaveAPath.points.Length) return;
+		if (waypointsIndex >= WaveAPath.points.Length) {
+			Destroy (gameObject);
+			return;
+		}
 		target = WaveAPath.points [waypointsIndex];
 	}
 }
