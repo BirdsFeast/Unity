@@ -21,6 +21,7 @@ public class CreepAMovement : MonoBehaviour {
         //this controls the movement.
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = target.position;
+		agent.speed = speed;
     }
     /// <summary>
     /// Ray cast collision detection and change of destination.
@@ -49,6 +50,7 @@ public class CreepAMovement : MonoBehaviour {
 			GetNextWaypoint ();
 		}*/
 	}
+
     //not being used now.
 	void GetNextWaypoint() {
 		waypointsIndex++;
@@ -57,5 +59,12 @@ public class CreepAMovement : MonoBehaviour {
 			return;
 		}
 		target = WaveAPath.points [waypointsIndex];
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		Debug.Log("Collision!");
+		if (collision.gameObject.CompareTag ("WormObjectiveCollider")) {
+			Destroy (gameObject);
+		}
 	}
 }
