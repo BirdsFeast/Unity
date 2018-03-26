@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CreepAMovement.cs" />
      <Compile Include="Assets\Scripts\CreepAMovement.cs" />
      <Compile Include="Assets\Scripts\WaveAPath.cs" />
      <Compile Include="Assets\Scripts\WaveSpawner.cs" />
