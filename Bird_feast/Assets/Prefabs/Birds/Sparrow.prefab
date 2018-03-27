@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23659498441381952}
   - component: {fileID: 54513548724934068}
   - component: {fileID: 114259099569803920}
+  - component: {fileID: 114037514482397960}
   m_Layer: 0
   m_Name: Sparrow
   m_TagString: Untagged
@@ -112,6 +113,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114037514482397960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1776722528956882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6040cc9c7932b2c4bae1104b9d24c86f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114259099569803920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,4 +135,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356aae4aa105b1441a57b69fd93ce944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
