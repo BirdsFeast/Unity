@@ -51,12 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\CollisionBehavior.cs" />
-     <Compile Include="Assets\Scripts\CreepAMovement.cs" />
-     <Compile Include="Assets\Scripts\MovementBehavior.cs" />
-     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
-     <Compile Include="Assets\Scripts\WaveAPath.cs" />
-     <Compile Include="Assets\Scripts\WaveSpawner.cs" />
+     <Compile Include="Assets\Birds\Scripts\CollisionBehavior.cs" />
+     <Compile Include="Assets\Birds\Scripts\MovementBehavior.cs" />
+     <Compile Include="Assets\Environment\Scripts\ScoreKeeper.cs" />
+     <Compile Include="Assets\Environment\Scripts\WaveAPath.cs" />
+     <Compile Include="Assets\Environment\Scripts\WaveSpawner.cs" />
+     <Compile Include="Assets\Worms\Scripts\CreepAMovement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
