@@ -309,6 +309,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114610270455295130, guid: 8ac0c1628d5477e4995afaeb4e4dacda,
+        type: 2}
+      propertyPath: bomb
+      value: 
+      objectReference: {fileID: 1041104567745350, guid: 26a09de6011c4744abac19a9dae99ec3,
+        type: 2}
+    - target: {fileID: 114610270455295130, guid: 8ac0c1628d5477e4995afaeb4e4dacda,
+        type: 2}
+      propertyPath: bombShootPosition
+      value: 
+      objectReference: {fileID: 1109647900}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ac0c1628d5477e4995afaeb4e4dacda, type: 2}
   m_IsPrefabParent: 0
@@ -579,6 +590,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1024531855}
+--- !u!4 &1109647900 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4161124244067814, guid: 8ac0c1628d5477e4995afaeb4e4dacda,
+    type: 2}
+  m_PrefabInternal: {fileID: 155066455}
 --- !u!1 &1187453036
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +654,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wormsText: {fileID: 129094334}
   birdsText: {fileID: 1024531857}
+--- !u!1 &1192271527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1192271528}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1192271528
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1192271527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -46.5, y: 8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1413558619
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +694,6 @@ GameObject:
   - component: {fileID: 1413558622}
   - component: {fileID: 1413558621}
   - component: {fileID: 1413558620}
-  - component: {fileID: 1413558625}
   m_Layer: 0
   m_Name: WormsObjectiveCollider
   m_TagString: WormObjectiveCollider
@@ -736,17 +779,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1413558625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1413558619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 072ba56ead471a040ae1a229306236e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1575975833
 Prefab:
   m_ObjectHideFlags: 0
@@ -829,7 +861,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1620359974}
-  - component: {fileID: 1620359975}
   - component: {fileID: 1620359976}
   m_Layer: 0
   m_Name: WaveAPath
@@ -856,17 +887,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1620359975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1620359973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9321de717be6d4446bd52a24878ceaa8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1620359976
 MonoBehaviour:
   m_ObjectHideFlags: 0

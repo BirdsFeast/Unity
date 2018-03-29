@@ -51,6 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Birds\Scripts\BombardierBombBehavior.cs" />
+     <Compile Include="Assets\Birds\Scripts\BombardierSpecialSkillsBehavior.cs" />
      <Compile Include="Assets\Birds\Scripts\CollisionBehavior.cs" />
      <Compile Include="Assets\Birds\Scripts\MovementBehavior.cs" />
      <Compile Include="Assets\Environment\Scripts\ScoreKeeper.cs" />
