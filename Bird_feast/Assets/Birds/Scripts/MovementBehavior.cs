@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovementBehavior : MonoBehaviour {
 
-	private float speed = 100f;
+	private float speed = 20f;
 
 	void Update() {
 		float moveHorizontal = GetMovementHorizontal ();
@@ -13,11 +13,22 @@ public class MovementBehavior : MonoBehaviour {
 	}
 
 	float GetMovementHorizontal () {
-		Debug.Log (speed);
-		return Input.GetAxis ("Horizontal") * Time.deltaTime * speed;
+		if (Input.GetAxis ("Horizontal") > 0f) {
+			return Time.deltaTime* speed;
+		}
+		if (Input.GetAxis ("Horizontal") < 0f) {
+			return -1 * Time.deltaTime * speed;
+		}
+		return 0f;
 	}
 
 	float GetMovementVertical() {
-		return Input.GetAxis ("Vertical") * Time.deltaTime * speed;
+		if (Input.GetAxis ("Vertical") > 0f) {
+			return Time.deltaTime* speed;
+		}
+		if (Input.GetAxis ("Vertical") < 0f) {
+			return -1 * Time.deltaTime * speed;
+		}
+		return 0f;
 	}
 }
