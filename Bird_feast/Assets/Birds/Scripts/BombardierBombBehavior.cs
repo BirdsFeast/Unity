@@ -6,9 +6,13 @@ public class BombardierBombBehavior : MonoBehaviour {
 
 	[Header("Behavior Parameters")]
 
-	private float timeToExplode = 5f;
+	private float timeToExplode = 2f;
 	private float currentTime = 0f;
 	private float speed = 1f;
+	private float range = 15f;
+	private int damage = 40;
+
+	private bool hasExploded = false;
 
 	[Header("Unity")]
 
@@ -21,8 +25,9 @@ public class BombardierBombBehavior : MonoBehaviour {
 
 	void Update () {
 		currentTime -= Time.deltaTime;
-		if (currentTime <= 0f) {
+		if (currentTime <= 0f && !hasExploded) {
 			Explode ();
+			hasExploded = true;
 		}
 		MoveToTarget ();
 	}
@@ -33,7 +38,17 @@ public class BombardierBombBehavior : MonoBehaviour {
 	}
 
 	void Explode() {
-		Instantiate (explosion);
+		Instantiate (explosion, transform.position, transform.rotation);
+
+		Collider[] colliders = Physics.OverlapSphere (transform.position, range);
+
+		foreach (Collider nearbyObject in colliders) {
+			WormHealthBehavior healthBehavior = nearbyObject.GetComponent<WormHealthBehavior> ();
+			if (healthBehavior != null) {
+				healthBehavior.ReduceHealth (damage);
+			}
+		}
+
 		Destroy (gameObject);
 	}
 }
