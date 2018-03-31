@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WormObjectiveCollider
   - Enemy
+  - EnvironmentCollider
   layers:
   - Default
   - TransparentFX

@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 224709040323367058}
   - component: {fileID: 222088974474771000}
   - component: {fileID: 114473691856326740}
+  - component: {fileID: 114687142402785494}
   m_Layer: 0
   m_Name: HealthBG
   m_TagString: Untagged
@@ -182,7 +183,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65815893020822386
 BoxCollider:
@@ -226,8 +227,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: a23ac0b25852d4a48aa060c753da61f3, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -299,8 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d92926c0bd95d418b70a4046c42aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb: {fileID: 0}
-  bombShootPosition: {fileID: 0}
+  bomb: {fileID: 1041104567745350, guid: 26a09de6011c4744abac19a9dae99ec3, type: 2}
+  missile: {fileID: 1564281974274632, guid: 8ed6472ddbba3e243a00013a63114ab9, type: 2}
+  bombShootPosition: {fileID: 4161124244067814}
 --- !u!114 &114682224419441852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,6 +324,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114687142402785494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519945257967604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551451fdb8c2f2e44b6ce9de9698c9d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222088974474771000
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreepAMovement : MonoBehaviour {
+public class WormMovement : MonoBehaviour {
 
 	public float speed = 10f;
 

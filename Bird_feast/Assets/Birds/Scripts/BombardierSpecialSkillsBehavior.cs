@@ -5,23 +5,43 @@ using UnityEngine;
 public class BombardierSpecialSkillsBehavior : MonoBehaviour {
 
 	public GameObject bomb;
-	private float bombCooldown = 3f;
+	public GameObject missile;
+	private float bombCooldown = 0.5f;
+	private float missileCooldown = 1f;
+	private float missileCurrentCooldown = 0f;
 	private float bombCurrentCooldown = 0f;
 	public Transform bombShootPosition;
-	private float range = 10f;
-	public GameObject enemy;
 
 	/// <summary>
 	/// Update Bomb's cooldown and check player's inputs
 	/// </summary>
 	void Update() {
-		bombCurrentCooldown -= Time.deltaTime;
-		if (Input.GetKeyDown (KeyCode.Q)) {
-			Ray clickRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-			ShootBomb (clickRay);
-		}
-
+    updateCooldowns();
+    checkInputs();
 	}
+
+  /// <summary>
+  /// Checks which inputs are pressed.
+  /// </summary>
+  void checkInputs() {
+    if (Input.GetKeyDown (KeyCode.Q)) {
+      Ray clickRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+      ShootBomb (clickRay);
+    }
+
+    if (Input.GetKeyDown(KeyCode.W)) {
+      Ray clickRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+      ShootMissile(clickRay);
+    }
+  }
+
+  /// <summary>
+  /// Updates the cooldowns.
+  /// </summary>
+  void updateCooldowns() {
+    bombCurrentCooldown -= Time.deltaTime;
+    missileCurrentCooldown -= Time.deltaTime;
+  }
 
 	/// <summary>
 	/// Is the bomb in cooldown.
@@ -29,10 +49,15 @@ public class BombardierSpecialSkillsBehavior : MonoBehaviour {
 	bool isBombInCooldown () {
 		return bombCurrentCooldown > 0f;
 	}
+
+	bool isMissileInCooldown() {
+		return missileCurrentCooldown > 0f;
+	}
 		
 	/// <summary>
 	/// Shoots the bomb.
 	/// </summary>
+  /// <param name="click">Click, click to where the bomb is going to</param>
 	void ShootBomb(Ray click) {
 		if (isBombInCooldown()) {
 			return;
@@ -45,15 +70,32 @@ public class BombardierSpecialSkillsBehavior : MonoBehaviour {
 		);
 
 		RaycastHit hit;
-		Debug.Log ("Click direction x" + click.direction.x.ToString());
-		Debug.Log ("Click direction y" + click.direction.y.ToString());
+
 		if (Physics.Raycast(click, out hit)) {
 			BombardierBombBehavior bombBehavior = newBomb.GetComponentInChildren<BombardierBombBehavior> ();
-			Debug.Log ("Position x" + hit.point.x.ToString());
-			Debug.Log ("Position y" + hit.point.y.ToString());
 			bombBehavior.target = hit.point;
-			bombCurrentCooldown = bombCooldown;	
+			bombCurrentCooldown = bombCooldown;
 		}
 	}
 
+
+  /// <summary>
+  /// Shoots the missile.
+  /// </summary>
+  /// <param name="click">Click, click to where the missile is going to.</param>
+	void ShootMissile (Ray click)
+	{
+		if (isMissileInCooldown ()) {
+			return;
+		}
+
+		GameObject newMissile = Instantiate (missile, bombShootPosition.position, bombShootPosition.rotation);
+		RaycastHit hit;
+
+		if (Physics.Raycast (click, out hit)) {
+			BombardierMissileBehavior missileBehavior = newMissile.GetComponentInChildren<BombardierMissileBehavior>();
+      missileBehavior.target = hit.point;
+      missileCurrentCooldown = missileCooldown;
+		}
+	}
 }
