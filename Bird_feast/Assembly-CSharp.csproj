@@ -55,6 +55,7 @@
      <Compile Include="Assets\Birds\Scripts\MovementBehavior.cs" />
      <Compile Include="Assets\Camera\Scripts\Camera_Behaviour.cs" />
      <Compile Include="Assets\Environment\Scripts\ScoreKeeper.cs" />
+     <Compile Include="Assets\Environment\Scripts\SelectManager_Behaviour.cs" />
      <Compile Include="Assets\Environment\Scripts\WaveAPath.cs" />
      <Compile Include="Assets\Environment\Scripts\WaveSpawner.cs" />
      <Compile Include="Assets\Worms\Scripts\CreepAMovement.cs" />
