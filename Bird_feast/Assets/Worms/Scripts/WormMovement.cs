@@ -7,7 +7,6 @@ public class WormMovement : MonoBehaviour {
 	public float speed = 10f;
 
 	private Transform target;
-	private int waypointsIndex = 0;
 
     //AI for pathfinding and navigation.
     UnityEngine.AI.NavMeshAgent agent;
@@ -22,7 +21,7 @@ public class WormMovement : MonoBehaviour {
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		agent.destination = target.position;
 		agent.speed = speed;
-	}
+	  }
 		
     /// <summary>
     /// Ray cast collision detection and change of destination.

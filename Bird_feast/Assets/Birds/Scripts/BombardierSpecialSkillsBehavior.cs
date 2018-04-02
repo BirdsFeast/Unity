@@ -7,7 +7,7 @@ public class BombardierSpecialSkillsBehavior : MonoBehaviour {
 	public GameObject bomb;
 	public GameObject missile;
 	private float bombCooldown = 0.5f;
-	private float missileCooldown = 1f;
+	private float missileCooldown = 0.5f;
 	private float missileCurrentCooldown = 0f;
 	private float bombCurrentCooldown = 0f;
 	public Transform bombShootPosition;
@@ -41,6 +41,10 @@ public class BombardierSpecialSkillsBehavior : MonoBehaviour {
   void updateCooldowns() {
     bombCurrentCooldown -= Time.deltaTime;
     missileCurrentCooldown -= Time.deltaTime;
+    float bombPercentageCooldown = bombCurrentCooldown / bombCooldown;
+    float missilePercentageCooldown = missileCurrentCooldown / missileCooldown;
+    CooldownQ.fillPercentage = bombPercentageCooldown;
+    CooldownW.fillPercentage = missilePercentageCooldown;
   }
 
 	/// <summary>
