@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class SelectManager_Behaviour : MonoBehaviour {
     public static SelectManager_Behaviour instance;
-    
+    [Tooltip("upward offset of the indicator")]
+    public GameObject indicator;
     //float
     public float boxWidth;
     public float boxHeight;
@@ -22,6 +23,7 @@ public class SelectManager_Behaviour : MonoBehaviour {
     public GUIStyle mouseDragSkin;
     //list and arrays
     public List<GameObject> currentlySelectedUnits = new List<GameObject>();
+    public List<GameObject> indicators = new List<GameObject>();
     //bool
     public bool mouseDragging;
     //gameobjects
@@ -42,13 +44,18 @@ public class SelectManager_Behaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //next frame action
         SelectUnitsFSM();
     }
+    //doesn't work atm
     private void OnGUI()
     {
         if (mouseDragging)
             GUI.Box(new Rect(boxLeft, boxTop, boxWidth, boxHeight), "", mouseDragSkin);
     }
+    /// <summary>
+    /// what the class will listen to for the next frame, real update.
+    /// </summary>
     private void SelectUnitsFSM()
     {
         switch (selectFSM)
@@ -66,17 +73,31 @@ public class SelectManager_Behaviour : MonoBehaviour {
     }
     private void DeselectAll()
     {
-
+        foreach (GameObject obj in indicators)
+        {
+            DeleteIndicator(obj);
+        }
+        foreach(GameObject selected in currentlySelectedUnits)
+        {
+            RemoveFromCurrentlySelectedUnits(selected);
+        }
+        selectFSM = SelectFSM.clickOrDrag;
     }
     private void SelectSingleUnit()
     {
-
+        DeselectAll();
+        if (selectedUnit)
+        {
+            AddToCurrentlySelectedUnits(selectedUnit);
+            selectFSM = SelectFSM.clickOrDrag;
+        }
+        
     }
     private void ClickOrDrag()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity) && !EventSystem.current.IsPointerOverGameObject() )//&& !UnitManager.instance.buildMode)
+        if (Physics.Raycast(ray, out hit) && !EventSystem.current.IsPointerOverGameObject() )
         {
             currentMousePoint = hit.point;
             if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftShift))
@@ -145,6 +166,7 @@ public class SelectManager_Behaviour : MonoBehaviour {
 
     private void SelectUnitsInDrag()
     {
+        
         var worms = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < worms.Length; i++)
         {
@@ -153,10 +175,12 @@ public class SelectManager_Behaviour : MonoBehaviour {
                 Vector2 unitScreenPosition = Camera.main.WorldToScreenPoint(worms[i].transform.position);
 
                 if (unitScreenPosition.x < boxFinish.x && unitScreenPosition.y > boxFinish.y && unitScreenPosition.x > boxStart.x && unitScreenPosition.y < boxStart.y)
+                {
                     AddToCurrentlySelectedUnits(worms[i]);
+                }
                 else
                 {
-                    //RemoveFromCurrentlySelectedUnits(UnitManager.instance.units[i]);
+                    RemoveFromCurrentlySelectedUnits(worms[i]);
                 }
             }
         }
@@ -167,8 +191,27 @@ public class SelectManager_Behaviour : MonoBehaviour {
         if (!currentlySelectedUnits.Contains(unitToAdd))
         {
             currentlySelectedUnits.Add(unitToAdd);
-            unitToAdd.transform.Find("SelectionCircle").gameObject.SetActive(true);
+            unitToAdd.GetComponent<CreepAMovement>().Select(true);
+            SpawnIndicator(unitToAdd);
         }
     }
+    private void RemoveFromCurrentlySelectedUnits(GameObject unitToRemove)
+    {
+        if(currentlySelectedUnits.Contains(unitToRemove))
+        {
+            unitToRemove.GetComponent<CreepAMovement>().Select(false);
+            currentlySelectedUnits.Remove(unitToRemove);
+        }
+    }
+    void SpawnIndicator(GameObject pos)
+    {
+        int counter = indicators.Count;
+        indicators.Add(Instantiate(indicator, pos.transform.position, Quaternion.identity));
+        indicators[counter].GetComponent<Follow_player>().SetUnit(pos);
+    }
 
+    void DeleteIndicator(GameObject toDelete)
+    {
+        Destroy(toDelete);
+    }
 }

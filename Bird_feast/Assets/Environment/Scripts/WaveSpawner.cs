@@ -12,11 +12,11 @@ public class WaveSpawner : MonoBehaviour {
 	private float countdown = 2f;
 
 	void Update() {
-		countdown -= Time.deltaTime;
+		/*countdown -= Time.deltaTime;
 		if (countdown <= 0f) {
-			StartCoroutine(SpawnWave ());
+			//StartCoroutine(SpawnWave ());
 			countdown = timeBetweenWaves;	
-		}
+		}*/
 	}
 
 	IEnumerator SpawnWave() {

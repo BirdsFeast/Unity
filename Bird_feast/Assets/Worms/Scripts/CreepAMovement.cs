@@ -9,6 +9,7 @@ public class CreepAMovement : MonoBehaviour {
 	private Transform target;
 	private int waypointsIndex = 0;
 
+    private bool Selected;
     //AI for pathfinding and navigation.
     UnityEngine.AI.NavMeshAgent agent;
 
@@ -20,7 +21,6 @@ public class CreepAMovement : MonoBehaviour {
 
 		//this controls the movement.
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
-		agent.destination = target.position;
 		agent.speed = speed;
 	}
 		
@@ -31,9 +31,8 @@ public class CreepAMovement : MonoBehaviour {
     void ClickPosition(Ray Click)
     {
         RaycastHit hit;
-        if (Physics.Raycast(Click, out hit))
+        if (Physics.Raycast(Click, out hit) && Selected)
         {
-            Debug.Log("Hit position: " + hit.transform.position);
             agent.destination = hit.point;
         }
     }
@@ -48,10 +47,23 @@ public class CreepAMovement : MonoBehaviour {
         }
 	}
 
+    /// <summary>
+    /// Goal collider.
+    /// </summary>
+    /// <param name="collision"></param>
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.CompareTag ("WormObjectiveCollider")) {
 			Destroy (gameObject);
 			ScoreKeeper.wormsScore++;
 		}
 	}
+
+    public void Select(bool sel)
+    {
+        Selected = sel;
+    }
+    public bool IsSelected()
+    {
+        return Selected;
+    }
 }
