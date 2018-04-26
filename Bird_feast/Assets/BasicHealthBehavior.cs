@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WormHealthBehavior : MonoBehaviour {
+public class BasicHealthBehavior : MonoBehaviour {
 
 	public int totalHealth = 100;
-	private int currentHealth = 100;
+	private int currentHealth;
 
 	public Image healthBar;
 

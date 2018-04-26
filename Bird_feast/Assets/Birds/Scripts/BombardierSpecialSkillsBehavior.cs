@@ -17,13 +17,13 @@ public class BombardierSpecialSkillsBehavior : MonoBehaviour {
 	/// </summary>
 	void Update() {
     updateCooldowns();
-    checkInputs();
+    CheckInputs();
 	}
 
   /// <summary>
   /// Checks which inputs are pressed.
   /// </summary>
-  void checkInputs() {
+  void CheckInputs() {
     if (Input.GetKeyDown (KeyCode.Q)) {
       Ray clickRay = Camera.main.ScreenPointToRay (Input.mousePosition);
       ShootBomb (clickRay);
