@@ -8,6 +8,7 @@ public class WormMovement : MonoBehaviour {
 
 	private Transform target;
 
+    private bool Selected;
     //AI for pathfinding and navigation.
     UnityEngine.AI.NavMeshAgent agent;
 
@@ -18,7 +19,6 @@ public class WormMovement : MonoBehaviour {
 		target = WaveAPath.points [0];
     
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
-		agent.destination = target.position;
 		agent.speed = speed;
 	  }
 		
@@ -29,7 +29,7 @@ public class WormMovement : MonoBehaviour {
     void ClickPosition(Ray Click)
     {
         RaycastHit hit;
-        if (Physics.Raycast(Click, out hit))
+        if (Physics.Raycast(Click, out hit) && Selected)
         {
             agent.destination = hit.point;
         }
@@ -43,10 +43,23 @@ public class WormMovement : MonoBehaviour {
         }
 	}
 
+    /// <summary>
+    /// Goal collider.
+    /// </summary>
+    /// <param name="collision"></param>
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.CompareTag ("WormObjectiveCollider")) {
 			Destroy (gameObject);
 			ScoreKeeper.wormsScore++;
 		}
 	}
+
+    public void Select(bool sel)
+    {
+        Selected = sel;
+    }
+    public bool IsSelected()
+    {
+        return Selected;
+    }
 }

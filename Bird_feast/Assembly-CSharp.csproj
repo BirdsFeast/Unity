@@ -65,11 +65,17 @@
      <Compile Include="Assets\CooldownQ.cs" />
      <Compile Include="Assets\CooldownW.cs" />
      <Compile Include="Assets\Environment\Scripts\ScoreKeeper.cs" />
+     <Compile Include="Assets\Environment\Scripts\SelectManager_Behaviour.cs" />
      <Compile Include="Assets\Environment\Scripts\WaveAPath.cs" />
      <Compile Include="Assets\Environment\Scripts\WaveSpawner.cs" />
+<<<<<<< HEAD
+     <Compile Include="Assets\Worms\Scripts\CreepAMovement.cs" />
+     <Compile Include="Assets\Worms\Scripts\Follow_player.cs" />
+=======
      <Compile Include="Assets\FixRotation.cs" />
      <Compile Include="Assets\MoveMarker.cs" />
      <Compile Include="Assets\Worms\Scripts\WormMovement.cs" />
+>>>>>>> 9f7ab6637c24e855778eb0055efe34a4f4e168f0
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
