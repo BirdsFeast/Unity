@@ -43,7 +43,7 @@ public class BombardierBombBehavior : MonoBehaviour {
 		Collider[] colliders = Physics.OverlapSphere (transform.position, range);
 
 		foreach (Collider nearbyObject in colliders) {
-			WormHealthBehavior healthBehavior = nearbyObject.GetComponent<WormHealthBehavior> ();
+			BasicHealthBehavior healthBehavior = nearbyObject.GetComponent<BasicHealthBehavior> ();
 			if (healthBehavior != null) {
 				healthBehavior.ReduceHealth (damage);
 			}

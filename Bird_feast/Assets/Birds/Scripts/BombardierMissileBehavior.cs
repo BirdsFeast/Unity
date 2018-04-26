@@ -39,9 +39,9 @@ public class BombardierMissileBehavior : MonoBehaviour {
 
   void DamageEnemy (Collider enemy) {
     if (enemy.gameObject.CompareTag("Enemy")) {
-      WormHealthBehavior wormHealthBehavior = enemy.GetComponent<WormHealthBehavior> ();
-        if (wormHealthBehavior != null) {
-          wormHealthBehavior.ReduceHealth(damage);
+      BasicHealthBehavior basicHealthBehavior = enemy.GetComponent<BasicHealthBehavior> ();
+        if (basicHealthBehavior != null) {
+          basicHealthBehavior.ReduceHealth(damage);
         }
       }
   }

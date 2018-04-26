@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombadierBombExplosionBehavior : MonoBehaviour {
+public class BombardierBombExplosionBehavior : MonoBehaviour {
 
 	private float timeToLive = 0.5f;
 	private float currentTime = 0f;
