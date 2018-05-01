@@ -8,7 +8,7 @@ public class BombardierBombBehavior : MonoBehaviour {
 
 	private float timeToExplode = 2f;
 	private float currentTime = 0f;
-	private float speed = 1f;
+	private float speed = 10f;
 	private float range = 15f;
 	private int damage = 40;
 
@@ -34,7 +34,9 @@ public class BombardierBombBehavior : MonoBehaviour {
 
 	void MoveToTarget() {
 		Vector3 direction = target - transform.position;
-		transform.Translate (direction * speed * Time.deltaTime);
+    float translationX = direction.normalized.x * speed * Time.deltaTime;
+    float translationZ = direction.normalized.z * speed * Time.deltaTime;
+		transform.Translate (translationX, 0, translationZ, Space.World);
 	}
 
 	void Explode() {

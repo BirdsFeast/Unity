@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class BombardierBasicAttackBehaviour : MonoBehaviour {
 
+  public bool isAttacking = false;
+ 
   private GameObject target;
   private float attacksPerSecond = 1f;
   private float delayBetweenAttacks;
   private float timeUntilNextAttack = 0f;
   private int damagePerAttack = 30;
   private float range = 15f;
-  private bool isAttacking = false;
   private MovementBehavior movementBehavior;
 
   void Start() {
-    movementBehavior = gameObject.GetComponent<MovementBehavior>();
+    movementBehavior = GetComponent<MovementBehavior>();
     delayBetweenAttacks = 1 / attacksPerSecond;
     timeUntilNextAttack = delayBetweenAttacks;
   }

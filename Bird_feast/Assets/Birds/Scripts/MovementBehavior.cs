@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MovementBehavior : MonoBehaviour {
 
   public float distanceToTarget = Mathf.Infinity;
-	private float movementSpeed = 30f;
+  BombardierBasicAttackBehaviour basicAttackBehaviour;
   private Vector3 target;
-  private Vector3 direction;
-  private float targetRadiusLimit = 0.3f;
+  NavMeshAgent agent;
 
   public GameObject targetMarker;
 
+  void Start() {
+    agent = GetComponent<NavMeshAgent>();
+    basicAttackBehaviour = GetComponent<BombardierBasicAttackBehaviour>();
+  }
+
 	void Update() {
     CheckInputs();
-    Move();
+    UpdateDistanceToTarget();
 	}
 
   void CheckInputs() {
@@ -24,6 +29,7 @@ public class MovementBehavior : MonoBehaviour {
   }
 
   void OnRightClick () {
+    if(basicAttackBehaviour.isAttacking) return;
     SetTargetToClickPosition ();
   }
 
@@ -32,22 +38,15 @@ public class MovementBehavior : MonoBehaviour {
     RaycastHit hit;
     if (Physics.Raycast(clickRay, out hit)) {
       target = hit.point;
-      CreateTargetMarker();
+      CreateTargetMarkerAndMoveToDestination();
     }
   }
 
-  void CreateTargetMarker() {
+  void CreateTargetMarkerAndMoveToDestination() {
     Quaternion defaultRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
     Instantiate(targetMarker, target, defaultRotation);
-    direction = transform.position - target;
-  }
-
-  void Move() {
-    if(IsUnitOnTarget()) return;
-    UpdateDistanceToTarget();
-    float translationX = direction.normalized.x * Time.deltaTime * movementSpeed;
-    float translationZ = direction.normalized.z * Time.deltaTime * movementSpeed;
-    transform.Translate(-1f * translationX, 0f, -1f * translationZ, Space.World);
+    agent.SetDestination(target);
+    agent.isStopped = false;
   }
 
   void UpdateDistanceToTarget () {
@@ -55,14 +54,6 @@ public class MovementBehavior : MonoBehaviour {
   }
 
   public void StopMovement() {
-    target = transform.position;
+    agent.isStopped = true;
   }
-
-  bool IsUnitOnTarget () {
-    Vector3 currentGroundPosition = new Vector3(transform.position.x, 0, transform.position.z);
-    Vector3 targetGroundPosition = new Vector3(target.x, 0, target.z);
-    bool unitCloseToTarget = Vector3.Distance(currentGroundPosition, targetGroundPosition) < targetRadiusLimit;
-    return unitCloseToTarget;
-  }
-
 }

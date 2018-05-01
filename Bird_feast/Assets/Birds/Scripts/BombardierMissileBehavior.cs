@@ -5,7 +5,7 @@ using UnityEngine;
 public class BombardierMissileBehavior : MonoBehaviour {
 
   public Vector3 target;
-  private float speed = 3f;
+  private float speed = 30f;
   private float missileBodyRadius = 2f;
   private int damage = 40;
   private Vector3 direction;
@@ -13,7 +13,7 @@ public class BombardierMissileBehavior : MonoBehaviour {
   public GameObject explosion;
 
   void Start() {
-    direction = target - transform.position;
+    direction = Vector3.Normalize(target - transform.position);
   }
 
   void Update() {
