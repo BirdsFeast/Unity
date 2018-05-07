@@ -23,7 +23,7 @@ public class SelectManager_Behaviour : MonoBehaviour {
     public GUIStyle mouseDragSkin;
     //list and arrays
     public List<GameObject> currentlySelectedUnits = new List<GameObject>();
-    public List<GameObject> indicators = new List<GameObject>();
+    //public List<GameObject> indicators = new List<GameObject>();
     //bool
     public bool mouseDragging;
     //gameobjects
@@ -73,10 +73,6 @@ public class SelectManager_Behaviour : MonoBehaviour {
     }
     private void DeselectAll()
     {
-        foreach (GameObject obj in indicators)
-        {
-            DeleteIndicator(obj);
-        }
         foreach(GameObject selected in currentlySelectedUnits)
         {
             RemoveFromCurrentlySelectedUnits(selected);
@@ -191,7 +187,7 @@ public class SelectManager_Behaviour : MonoBehaviour {
         if (!currentlySelectedUnits.Contains(unitToAdd))
         {
             currentlySelectedUnits.Add(unitToAdd);
-            unitToAdd.GetComponent<CreepAMovement>().Select(true);
+            unitToAdd.GetComponent<WormMovement>().Select(true);
             SpawnIndicator(unitToAdd);
         }
     }
@@ -199,19 +195,24 @@ public class SelectManager_Behaviour : MonoBehaviour {
     {
         if(currentlySelectedUnits.Contains(unitToRemove))
         {
-            unitToRemove.GetComponent<CreepAMovement>().Select(false);
+            unitToRemove.GetComponent<WormMovement>().Select(false);
             currentlySelectedUnits.Remove(unitToRemove);
+            DeleteIndicator(unitToRemove);
         }
     }
-    void SpawnIndicator(GameObject pos)
+    void SpawnIndicator(GameObject sel)
     {
-        int counter = indicators.Count;
-        indicators.Add(Instantiate(indicator, pos.transform.position, Quaternion.identity));
-        indicators[counter].GetComponent<Follow_player>().SetUnit(pos);
+        sel.gameObject.transform.GetChild(1).gameObject.SetActive(true);
     }
-
+    void SpawnIndicators(GameObject pos)
+    {
+        foreach (GameObject selected in currentlySelectedUnits)
+        {
+            selected.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        }
+    }
     void DeleteIndicator(GameObject toDelete)
     {
-        Destroy(toDelete);
+            toDelete.gameObject.transform.GetChild(1).gameObject.SetActive(false);
     }
 }

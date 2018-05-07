@@ -4,13 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - WormObjectiveCollider
-  - Enemy
-<<<<<<< HEAD
-  - Selector
-=======
   - EnvironmentCollider
->>>>>>> 9f7ab6637c24e855778eb0055efe34a4f4e168f0
+  - Enemy
+  - Selector
   layers:
   - Default
   - TransparentFX
@@ -20,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - Selector
+  - 
   - 
   - 
   - 
